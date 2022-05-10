@@ -52,11 +52,11 @@ app.post('/gadgets', async (req,res)=>{
   
  const result = await electroCollection.insertOne(NewProduct);
   
-  res.send(result)
+  res.send(result)   
 })
 //  to Add products=================
 //  to delete products=================
-app.delete('/gadgets/:id', async (req, res) => {
+app.delete('/gadgets/:id', async (req,res) => {
       const id=req.params.id
          const query={_id:ObjectId(id)}
          const result= await electroCollection.deleteOne(query)
@@ -68,7 +68,7 @@ app.delete('/gadgets/:id', async (req, res) => {
 
 
   } finally {
-    // await client.close();
+    
   }
 }
 
