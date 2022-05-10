@@ -25,7 +25,7 @@ async function run(){
     await client.connect();
     const electroCollection = client.db("elctroCollection").collection("gadgets");
    
-    // query for movies that have a runtime less than 15 minutes
+    //  to load all data in server=================
     app.get('/gadgets',async(req,res)=>{
       const query = { };
    
@@ -34,6 +34,20 @@ async function run(){
      const Gadgets= await cursor.toArray( );
      res.send(Gadgets)
     })
+    //  to load all data in server=================
+//  to Add products=================
+app.post('/product', async (req,res)=>{
+  const NewProduct=req.body
+  console.log("ihdgiudhv",NewProduct);
+ const result = await electroCollection.insertOne(NewProduct);
+  
+  res.send(result)
+})
+//  to Add products=================
+
+
+
+
   } finally {
     // await client.close();
   }
