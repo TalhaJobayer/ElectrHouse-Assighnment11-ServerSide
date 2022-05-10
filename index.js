@@ -7,13 +7,13 @@ require('dotenv').config()
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 
 
-// middle ware===
+//  middle ware========
  app.use(cors())
  app.use(express.json())
-// middle ware===
+// middle ware==============
 
 app.get('/', (req, res) => {
-    res.send('server is on the way to serve me')
+    res.send('server is on the way to serve me ')
   })
   // =============================================
   
@@ -39,8 +39,7 @@ async function run(){
 
     app.get('/gadgets/:id', async(req,res)=>{
       const id=req.params.id
-     
-      const query={_id:ObjectId(id)};
+       const query={_id:ObjectId(id)};
      
        const result= await electroCollection.findOne(query)
        
