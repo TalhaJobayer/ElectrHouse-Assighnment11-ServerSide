@@ -4,7 +4,7 @@ const cors=require('cors')
 app=express()
 port=process.env.PORT ||5000
 require('dotenv').config()
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 
 
 // middle ware===
@@ -35,15 +35,34 @@ async function run(){
      res.send(Gadgets)
     })
     //  to load all data in server=================
+    // find one data api=======
+
+    app.get('/gadgets/:id', async(req,res)=>{
+      const id=req.params.id
+     
+      const query={_id:ObjectId(id)};
+     
+       const result= await electroCollection.findOne(query)
+       
+       res.send(result)
+    })
 //  to Add products=================
-app.post('/product', async (req,res)=>{
+app.post('/gadgets', async (req,res)=>{
   const NewProduct=req.body
-  console.log("ihdgiudhv",NewProduct);
+  
  const result = await electroCollection.insertOne(NewProduct);
   
   res.send(result)
 })
 //  to Add products=================
+//  to delete products=================
+app.delete('/gadgets/:id', async (req, res) => {
+      const id=req.params.id
+         const query={_id:ObjectId(id)}
+         const result= await electroCollection.deleteOne(query)
+         res.send(result)
+    });
+//  to delete products=================
 
 
 
